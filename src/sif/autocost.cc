@@ -285,6 +285,14 @@ public:
     // Throw back a lambda that checks the access for this type of costing
     return [](const baldr::DirectedEdge* edge) {
       if (edge->is_shortcut() || !(edge->forwardaccess() & kAutoAccess)) {
+        //        if (edge->is_shortcut()) {
+        //          std::cout << "short cut X ";
+        //        }
+        //
+        //        if (!(edge->forwardaccess() & kAutoAccess)) {
+        //          std::cout << " no access X ";
+        //        }
+
         return 0.0f;
       } else {
         // TODO - use classification/use to alter the factor

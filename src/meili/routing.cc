@@ -34,7 +34,7 @@ void LabelSet::put(const baldr::GraphId& nodeid,
   if (!nodeid.Is_Valid()) {
     throw std::runtime_error("invalid nodeid");
   }
-
+  std::cout << edgeid << std::endl;
   // Find the node Id. If not found, create a new label and push
   // it to the queue
   const auto it = node_status_.find(nodeid);
@@ -72,7 +72,7 @@ void LabelSet::put(const uint16_t dest,
   if (dest == kInvalidDestination) {
     throw std::runtime_error("invalid destination");
   }
-
+  std::cout << edgeid << std::endl;
   // Find the destination. If not count, create a new label and push it
   // to the queue
   baldr::GraphId inv;

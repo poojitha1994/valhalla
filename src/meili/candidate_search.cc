@@ -76,7 +76,6 @@ CandidateQuery::WithinSquaredDistance(const midgard::PointLL& location,
 
     if (edge_included) {
       std::tie(point, sq_distance, segment, offset) = helpers::Project(projector, shape);
-
       if (sq_distance <= sq_search_radius) {
         const float dist = edge->forward() ? offset : 1.f - offset;
         if (dist == 1.f) {
@@ -89,12 +88,12 @@ CandidateQuery::WithinSquaredDistance(const midgard::PointLL& location,
     }
 
     bool oppedge_included = !edgefilter || edgefilter(opp_edge) != 0.f;
-
     // Correlate its opp edge
     if (oppedge_included) {
       // No need to project again if we already did it above
       if (!edge_included) {
         std::tie(point, sq_distance, segment, offset) = helpers::Project(projector, shape);
+        std::cout << sq_distance << " ";
       }
       if (sq_distance <= sq_search_radius) {
         const float dist = opp_edge->forward() ? offset : 1.f - offset;
@@ -219,6 +218,7 @@ CandidateGridQuery::RangeQuery(const AABB2<midgard::PointLL>& range) const {
       result.insert(set.begin(), set.end());
     }
   }
+
   return result;
 }
 
